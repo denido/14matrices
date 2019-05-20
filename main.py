@@ -15,8 +15,9 @@ import class_fourteen_matrices
 #import S1_selfenergy
 #import CNTFET
 
+#print(__name__)
 
-if __name__ == "main":
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("config",help="Config file")
     parser.add_argument("--mode",help="run mode")
@@ -28,7 +29,8 @@ if __name__ == "main":
         cfg = yaml.load(yamlfile)
         
     system = class_fourteen_matrices.fourteen_matrices(cfg)
-    
+#    print(cfg)
+#    print(args.mode)
     if args.mode == "run":
         system.NEGF()
         

@@ -23,7 +23,7 @@ class fourteen_matrices:
     --HR,SR is the on-site hamiltonian, overlap of the right electrode.
     --TR,STR is the hopping hamiltonian, overlap of the right electrode.
     
-    The direction of the hopping matrices have to be from the center to the left/right, i.e. TL & VCL goe to the left, TR & VCR goe to the right.
+    The direction of the hopping matrices have to be from the center to the left/right, i.e. TL & VCL go to the left, TR & VCR go to the right.
     And the same for the hopping overlaps.
     """
     
@@ -36,29 +36,30 @@ class fourteen_matrices:
         self.path_out = config["Path of output"]
         
         
+        
     def load_electrodes(self):
         """
         Loading matrices representing the left/ right electrode and the coupling from the quantum region to each.
         """
         
         
-        HL = np.load(self.path+"/HL.dat")
-        SL = np.load(self.path+"/SL.dat")
+        HL = np.load(self.path_in+"/HL.dat")
+        SL = np.load(self.path_in+"/SL.dat")
         
-        HR = np.load(self.path+"/HR.dat")
-        SR = np.load(self.path+"/SR.dat")
+        HR = np.load(self.path_in+"/HR.dat")
+        SR = np.load(self.path_in+"/SR.dat")
         
-        VCL = np.load(self.path+"/VCL.dat")
-        SCL = np.load(self.path+"/SCL.dat")
+        VCL = np.load(self.path_in+"/VCL.dat")
+        SCL = np.load(self.path_in+"/SCL.dat")
         
-        VCR = np.load(self.path+"/VCR.dat")
-        SCR = np.load(self.path+"/SCR.dat")
+        VCR = np.load(self.path_in+"/VCR.dat")
+        SCR = np.load(self.path_in+"/SCR.dat")
         
-        TL = np.load(self.path+"/TL.dat")
-        STL = np.load(self.path+"/STL.dat")
+        TL = np.load(self.path_in+"/TL.dat")
+        STL = np.load(self.path_in+"/STL.dat")
         
-        TR = np.load(self.path+"/TR.dat")
-        STR = np.load(self.path+"/STR.dat")
+        TR = np.load(self.path_in+"/TR.dat")
+        STR = np.load(self.path_in+"/STR.dat")
         
         return HL,SL,HR,SR,VCL,SCL,VCR,SCR,TL,STL,TR,STR
     
@@ -67,8 +68,8 @@ class fourteen_matrices:
         """
         Load the matrices representing the quantum region
         """
-        HC = np.load(self.path+"/HC.dat")
-        SC = np.load(self.path+"/SC.dat")
+        HC = np.load(self.path_in+"/HC.dat")
+        SC = np.load(self.path_in+"/SC.dat")
         
         return HC,SC
     
@@ -89,16 +90,16 @@ class fourteen_matrices:
        HC,SC = self.load_center()
        
        #init energy range and add small imaginary part calculate retarded quantities
-       E = np.linspace(self.Ea,self.Eb,self.NE)
+       E = np.linspace(self.Ea,self.Eb,self.NE,dtype=complex)
        E += 1j*self.eta
        dimC = HC.shape[0]
 #       dimL = HL.shape[0]
 #       dimR = HR.shape[0]
        
        #init self-energies as functions of energy. They have to have the same dimension as the quantum region hamiltonian.
-       sigmaL = np.zeros([self.NE,dimC,dimC])
-       sigmaR = np.zeros([self.NE,dimC,dimC])
-       HC_effective = np.zeros([self.NE,dimC,dimC])
+       sigmaL = np.zeros([self.NE,dimC,dimC],dtype=complex)
+       sigmaR = np.zeros([self.NE,dimC,dimC],dtype=complex)
+       HC_effective = np.zeros([self.NE,dimC,dimC],dtype=complex)
        
        #init DOS and transmission
        dos = np.zeros(self.NE)
