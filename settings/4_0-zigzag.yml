@@ -1,0 +1,6 @@
+Number of energy points : 1000
+Lower energy border : -2.5
+Upper energy border : 2.5
+Path to the system matrices : "tests/4_0-zigzag/Input"
+Small imaginary part : 0.001
+Path of output : "tests/4_0-zigzag/Output"
