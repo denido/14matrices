@@ -8,7 +8,7 @@ Created on Mon May 20 12:32:08 2019
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import mo
+import modules.mo as mo
 
 
 class fourteen_matrices:

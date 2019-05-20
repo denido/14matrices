@@ -6,16 +6,10 @@ Created on Mon May 20 13:38:24 2019
 """
 
 import argparse
-import numpy as np
-import os
-#import subprocess
-import sys
 import yaml
-import class_fourteen_matrices
-#import S1_selfenergy
-#import CNTFET
+import modules.class_fourteen_matrices
 
-#print(__name__)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -23,17 +17,11 @@ if __name__ == "__main__":
     parser.add_argument("--mode",help="run mode")
     args = parser.parse_args()
     
-    
-    
     with open(args.config,"r") as yamlfile:
         cfg = yaml.load(yamlfile)
         
-    system = class_fourteen_matrices.fourteen_matrices(cfg)
-#    print(cfg)
-#    print(args.mode)
+    system = modules.class_fourteen_matrices.fourteen_matrices(cfg)
     if args.mode == "run":
         system.NEGF()
-        
-    if args.mode == "plot":
         system.plot()
     
